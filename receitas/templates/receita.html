@@ -1,29 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="description" content="">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-
-    <!-- Title -->
-    <title>Alura Receitas</title>
-
-    <!-- Favicon -->
-    <link rel="icon" href="img/core-img/favicon.ico">
-
-    <!-- Core Stylesheet -->
-    <link rel="stylesheet" href="site.css">
-
-</head>
-
-<body>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
     <!-- Preloader -->
     <div id="preloader">
         <i class="circle-preloader"></i>
-        <img src="img/core-img/hamburger.png" alt="">
+        <img src="{% static 'img/core-img/hamburger.png' %}" alt="">
     </div>
 
     <!-- Search Wrapper -->
@@ -43,81 +24,7 @@
         </div>
     </div>
 
-    <!-- ##### Header Area Start ##### -->
-    <header class="header-area">
-
-        <!-- Top Header Area -->
-        <div class="top-header-area">
-            <div class="container h-100">
-                <div class="row h-100 align-items-center justify-content-between">
-                    <!-- Breaking News -->
-                    <div class="col-12 col-sm-6">
-                        <div class="breaking-news">
-                            <div id="breakingNewsTicker" class="ticker">
-                                <ul>
-                                    <li><a href="">Boas vindas!</a></li>
-                                    <li><a href="">As melhores receitas</a></li>
-                                    <li><a href="">Você encontra aqui!</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Top Social Info -->
-                    <div class="col-12 col-sm-6">
-                        <div class="top-social-info text-right">
-                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Navbar Area -->
-        <div class="delicious-main-menu">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="deliciousNav">
-
-                        <!-- Logo -->
-                        <a class="nav-brand" href="index.html"><img src="img/core-img/logo.png" alt=""></a>
-
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <!-- Menu -->
-                        <div class="classy-menu">
-
-                            <!-- close btn -->
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
-
-                            <!-- Nav Start -->
-                            <div class="classynav">
-                                <ul>
-                                    <li><a href="index.html">Home</a></li>
-                                    <li><a href="receita.html">Receitas</a></li>
-                                </ul>
-
-                                <!-- Newsletter Form -->
-                                <div class="search-btn">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </div>
-
-                            </div>
-                            <!-- Nav End -->
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </header>
-    <!-- ##### Header Area End ##### -->
+    {% include 'partials/menu.html' %}
 
         <!-- Receipe Post Search -->
         <div class="receipe-post-search mb-80">
@@ -144,7 +51,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="receipe-slider owl-carousel">
-                        <img src="img/bg-img/tomate_banner.jpg">
+                        <img src="{% static 'img/bg-img/tomate_banner.jpg' %}">
                     </div>
                 </div>
             </div>
@@ -157,22 +64,25 @@
                 <div class="row">
                     <div class="col-12 col-md-8">
                         <div class="receipe-headline my-5">
-                            <span>30 de Fevereiro, 2000</span>
-                            <h2>Nome da receita</h2>
+                            <span>{{ receita.data_receita }}</span>
+                            <h2>{{ receita.nome_receita }}</h2>
                             <div class="receipe-duration">
-                                <h6>Preparo: 15 minutos</h6>
-                                <h6>Rendimento: 2 porçoes</h6>
-                                <h6>Categoria: categoria</h6>
+                                <h6>{{ receita.tempo_preparo }} Minutos</h6>
+                                <h6>{{ receita.rendimento }}</h6>
+                                <h6>{{ receita.categoria }}</h6>
                                 <h6>Por: Pessoa</h6>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <!-- Single Preparation Step -->
                         <div class="single-preparation-step d-flex">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec varius dui. Suspendisse potenti. Vestibulum ac pellentesque tortor. Aenean congue sed metus in iaculis. Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget lobortis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
+                            <p>{{ receita.modo_preparo }}</p>
                         </div>
                     </div>
 
@@ -181,45 +91,12 @@
                         <div class="ingredients">
                             <h4>Ingredientees</h4>
                             <div class="ingredients">
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum nec varius dui. Suspendisse potenti. Vestibulum ac pellentesque tortor. Aenean congue sed metus in iaculis. Cras a tortor enim. Phasellus posuere vestibulum ipsum, eget lobortis purus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. </p>
-                            </p>
+                                <p>{{ receita.ingredientes }}</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <!-- Ingredientes -->
 
-    <!-- ##### Footer Area Start ##### -->
-    <footer class="footer-area">
-            <div class="container h-100">
-                <div class="row h-100">
-                    <div class="col-12 h-100 d-flex flex-wrap align-items-center justify-content-between">
-                        <!-- Footer Social Info -->
-                        <div class="footer-social-info text-right">
-                            <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                            <a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                        </div>
-                        <!-- Footer Logo -->
-                        <div class="footer-logo">
-                            <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </footer>
-        <!-- ##### Footer Area Start ##### -->
-
-    <!-- ##### All Javascript Files ##### -->
-    <!-- jQuery-2.2.4 js -->
-    <script src="js/jquery/jquery-2.2.4.min.js"></script>
-    <!-- Popper js -->
-    <script src="js/bootstrap/popper.min.js"></script>
-    <!-- Bootstrap js -->
-    <script src="js/bootstrap/bootstrap.min.js"></script>
-    <!-- All Plugins js -->
-    <script src="js/plugins/plugins.js"></script>
-    <!-- Active js -->
-    <script src="js/active.js"></script>
-</body>
-
-</html>
+    {% include 'partials/footer.html' %}
+{% endblock %}

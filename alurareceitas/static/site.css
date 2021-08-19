@@ -1030,7 +1030,8 @@ textarea:focus {
     flex: 0 0 60px;
     max-width: 60px;
     width: 60px;
-    margin-bottom: 0; }
+    margin-bottom: 0;
+     }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .ingredients {
